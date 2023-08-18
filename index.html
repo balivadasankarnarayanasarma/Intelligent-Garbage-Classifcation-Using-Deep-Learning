@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Garbage Classification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Garbage Classification</h1>
+        <div class="buttons">
+            <button id="home">Home</button>
+            <button id="aboutUs">About Us</button>
+            <button id="project">Project</button>
+        </div>
+    </div>
+
+    <div id="content-home" class="container">
+        <h2>Welcome to Garbage Classification Project</h2>
+        <p>This project aims to classify garbage items into different categories using deep learning techniques.</p>
+    </div>
+
+    <div id="content-aboutUs" class="container" style="display: none;">
+        <h2>About Us</h2>
+        <p>Hello! We are a team of developers working on this project <br>
+The Garbage Classification Using Deep Learning project aims to promote waste management and environmental awareness by providing a simple and efficient way to classify garbage images. By using this web application, users can contribute to a cleaner environment by efficiently categorizing different types of waste materials. We hope that this project helps in raising awareness about proper waste disposal and encourages sustainable practices in waste management. Thank you for using the Garbage Classification web app!
+
+.</p>
+    </div>
+
+    <div id="content-project" class="container" style="display: none;">
+        <h2>Project Information</h2>
+        <p>This project focuses on developing a deep learning model for garbage classification. It utilizes Convolutional Neural Networks (CNNs) to classify garbage items into specific categories, such as cardboard, glass, metal, paper, plastic, and trash.</p>
+        <p>The model is trained on a large dataset of garbage images and is capable of predicting the category of an input garbage item with high accuracy.</p>
+<p>The Garbage Classification Using Deep Learning project is an innovative web 
+application that utilizes state-of-the-art deep learning techniques to classify images 
+of garbage into specific categories. The main objective of this project is to contribute 
+to waste management and environmental conservation efforts by providing an 
+efficient and user-friendly tool for waste classification.
+Waste management is a critical global issue, and improper disposal of waste can 
+have severe environmental consequences. To address this problem, accurate waste 
+classification is essential, as it allows for effective recycling, reuse, and proper 
+disposal of waste materials. However, manual waste classification can be timeconsuming and error-prone.
+This web application leverages the power of deep learning to automate the waste 
+classification process. The underlying deep learning model has been trained on a 
+diverse dataset of garbage images, allowing it to identify different types of waste 
+materials accurately. By providing users with an intuitive interface to upload images 
+of garbage, the web app quickly classifies the waste into categories such as 
+cardboard, glass, metal, paper, plastic, and trash </p>
+    </div>
+
+    <script>
+        document.getElementById("home").addEventListener("click", function () {
+            document.getElementById("content-home").style.display = "block";
+            document.getElementById("content-aboutUs").style.display = "none";
+            document.getElementById("content-project").style.display = "none";
+        });
+
+        document.getElementById("aboutUs").addEventListener("click", function () {
+            document.getElementById("content-home").style.display = "none";
+            document.getElementById("content-aboutUs").style.display = "block";
+            document.getElementById("content-project").style.display = "none";
+        });
+
+        document.getElementById("project").addEventListener("click", function () {
+            document.getElementById("content-home").style.display = "none";
+            document.getElementById("content-aboutUs").style.display = "none";
+            document.getElementById("content-project").style.display = "block";
+        });
+    </script>
+
+    <div class="container">
+        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="file" accept=".jpg, .jpeg, .png">
+            <input type="submit" value="Upload Image" name="submit">
+        </form>
+
+        {% if prediction %}
+        <h2>Prediction: {{ prediction }}</h2>
+        {% endif %}
+
+        {% if image_path %}
+        <img src="{{ image_path }}" alt="Uploaded Image">
+        {% endif %}
+    </div>
+    
+
+
+</body>
+
+</html>
+
+
+
+
+
